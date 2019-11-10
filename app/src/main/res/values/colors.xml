@@ -6,7 +6,7 @@
     <color name="colorAccent">#F57F17</color>
     <color name="colorSecondaryDark">#BC5100</color>
     <color name="colorSecondaryLight">#FFB04C</color>
-    <color name="colorStringDarkBackground">#80FFFFFF</color>
+    <color name="colorStringDarkBackground">#FAFFFFFF</color>
     <color name="colorStringSecondaryBackground">#B2000000</color>
 
 </resources>

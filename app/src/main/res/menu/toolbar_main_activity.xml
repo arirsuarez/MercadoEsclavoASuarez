@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search_button_main_toolbar"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_icon_main_toolbar"
+        android:checkable="false"
+        android:enabled="false"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="Menu"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+
+
+
+
+</menu>

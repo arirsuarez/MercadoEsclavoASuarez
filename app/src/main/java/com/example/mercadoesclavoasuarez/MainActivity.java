@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -17,7 +19,10 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,14 +33,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationViewMenu;
     @BindView(R.id.toolbarMainActivity)
     Toolbar toolbar;
-    @BindView(R.id.AppInfoTextView)
-    TextView appInfoTextView;
+    @BindView(R.id.productListRecyclerView)
+    RecyclerView recyclerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         navigationViewMenu.setNavigationItemSelectedListener(this);
@@ -44,6 +50,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayoutMainActivity.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        this.recyclerView.setLayoutManager(layoutManager);
+
+        ProductDao productDao = new ProductDao();
+        List<Product> productList = productDao.getProducts();
+
+        Adapter adapter = new Adapter(productList);
+        this.recyclerView.setAdapter(adapter);
+        this.recyclerView.setHasFixedSize(true);
+
+
+
 
     }
 

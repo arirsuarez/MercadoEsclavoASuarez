@@ -23,7 +23,7 @@
         android:id="@+id/FavoritesNavigationViewMenu"
         android:checkable="true"
         android:icon="@drawable/ic_favorite_black_24dp"
-        android:title="Inicio" />
+        android:title="Favoritos" />
 
     <item
         android:id="@+id/UserAccountNavigationViewMenu"

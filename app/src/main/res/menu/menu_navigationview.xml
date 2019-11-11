@@ -3,13 +3,11 @@
 
     <item
         android:id="@+id/HomeNavigationViewMenu"
-        android:checkable="true"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Inicio" />
 
     <item
         android:id="@+id/SearchNavigationViewMenu"
-        android:checkable="true"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Buscar" />
 
@@ -21,13 +19,11 @@
 
     <item
         android:id="@+id/FavoritesNavigationViewMenu"
-        android:checkable="true"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="Favoritos" />
 
     <item
         android:id="@+id/UserAccountNavigationViewMenu"
-        android:checkable="true"
         android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="Mi Cuenta" />
 

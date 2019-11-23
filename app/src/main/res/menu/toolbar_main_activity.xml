@@ -6,7 +6,7 @@
         android:id="@+id/search_button_main_toolbar"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/menu_icon_main_toolbar"
@@ -15,7 +15,7 @@
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="Menu"
         android:visible="true"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 
 

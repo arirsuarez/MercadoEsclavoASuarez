@@ -70,6 +70,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+         /* @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.search_action){
+            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Go to LinkedIn", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }*/
+
         String itemName = (String) menuItem.getTitle();
 
         Toast.makeText(this, "Opción Seleccionada: " + itemName, Toast.LENGTH_SHORT).show();

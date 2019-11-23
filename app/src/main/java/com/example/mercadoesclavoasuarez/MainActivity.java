@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationViewMenu.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayoutMainActivity, toolbar, R.string.openNavigationView, R.string.closeNavigationView);
+        drawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.colorAccent));
 
         drawerLayoutMainActivity.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -108,5 +109,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             closeNavigationView();
         }
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_main_activity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == R.id.search_button_main_toolbar){
+            Toast.makeText(this, "Search Button", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_icon_main_toolbar) {
+            Toast.makeText(this, "Home Button", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+
     }
 }

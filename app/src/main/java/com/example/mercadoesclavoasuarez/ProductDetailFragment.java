@@ -4,6 +4,7 @@ package com.example.mercadoesclavoasuarez;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,10 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class ProductDetailFragment extends Fragment {
+
+    ViewPager productViewPager = getView().findViewById(R.id.productFragmentViewPager);
+    //TODO GetSupport Fragment Manger. 
+
 
 
     public ProductDetailFragment() {

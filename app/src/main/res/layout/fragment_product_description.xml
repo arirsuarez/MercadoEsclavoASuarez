@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDescription">
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".CharactInfo">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp"
+        android:text="DESCRIPCION"
+        android:textColor="@color/colorStringDarkBackground"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/productDescriptionFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="5dp"
+        android:background="@color/colorPrimaryLight"
 
-</FrameLayout>
+        />
+
+</LinearLayout>

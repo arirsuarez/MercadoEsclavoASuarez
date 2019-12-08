@@ -17,16 +17,26 @@ public class ProductDetailsViewPagerAdapter extends FragmentStatePagerAdapter {
     public ProductDetailsViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
         this.fragments = new ArrayList<>();
-        fragments.add(CharactInfo)
+        fragments.add(new ProductDescription());
+        fragments.add(new Questions());
+        fragments.add(new SellerInfo());
+        fragments.add(new RatingsInfo());
+        fragments.add(new CharactInfo());
+
+        titleDetailList.add("DESCRIPCION");
+        titleDetailList.add("PREGUNTAS");
+        titleDetailList.add("VENDEDOR");
+        titleDetailList.add("OPINIONES");
+        titleDetailList.add("CARACTERISTICAS");
     }
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return fragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return fragments.size();
     }
 }

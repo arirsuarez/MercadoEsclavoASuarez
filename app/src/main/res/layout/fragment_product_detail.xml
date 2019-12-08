@@ -80,13 +80,13 @@
             android:id="@+id/productDetailTablayout"
             android:background="@color/colorPrimaryDark"/>
 
-        <com.google.android.material.navigation.NavigationView
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/productFragmentViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/productDetailViewPager"
-            android:background="@color/colorPrimaryLight"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"/>
+            android:background="@color/colorPrimaryDark">
+
+        </androidx.viewpager.widget.ViewPager>
 
     </LinearLayout>
 

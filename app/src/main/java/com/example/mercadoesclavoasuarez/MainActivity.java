@@ -137,9 +137,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.search_button_main_toolbar){
             Toast.makeText(this, "Search Button", Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.menu_icon_main_toolbar) {
-            Toast.makeText(this, "Home Button", Toast.LENGTH_SHORT).show();
-            return true;
         }
         return super.onOptionsItemSelected(item);
 

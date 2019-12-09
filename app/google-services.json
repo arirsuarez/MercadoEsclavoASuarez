@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "797702298982",
+    "firebase_url": "https://mercadoesclavoasuarez.firebaseio.com",
+    "project_id": "mercadoesclavoasuarez",
+    "storage_bucket": "mercadoesclavoasuarez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797702298982:android:321e3af1373b00f28cfca7",
+        "android_client_info": {
+          "package_name": "com.example.mercadoesclavoasuarez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797702298982-f1btfkjmrvu8vj0q932u1u4sbtisvu64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEozsabIOqtS--NcH9tfFNvg0k6DeLpyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797702298982-f1btfkjmrvu8vj0q932u1u4sbtisvu64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

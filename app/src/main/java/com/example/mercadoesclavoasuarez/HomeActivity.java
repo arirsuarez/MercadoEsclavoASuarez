@@ -66,17 +66,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         productController.getCategoryRequest(new ResultListener<List<Category>>() {
             @Override
             public void onFinish(List<Category> results) {
-                results.ge
-            }
-        });
-        /*productController.getCategoryRequest(new ResultListener<List<Category>>(){
-            @Override
-            public void onFinish(CategoryContainer results) {
-                List<Category> categoriesList = results.getResults();
-                categories = categoriesList;
+                categories = results;
                 categoryAdapter.refreshList(categories);
             }
-        });*/
+        });
 
         categoryAdapter = new CategoryAdapter(categories);
         this.recyclerView.setAdapter(categoryAdapter);

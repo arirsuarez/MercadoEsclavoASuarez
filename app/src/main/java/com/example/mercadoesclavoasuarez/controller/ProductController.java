@@ -1,9 +1,12 @@
 package com.example.mercadoesclavoasuarez.controller;
 
 import com.example.mercadoesclavoasuarez.model.dao.ProductDao;
+import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
 import com.example.mercadoesclavoasuarez.util.ResultListener;
+
+import java.util.List;
 
 public class ProductController {
 
@@ -13,10 +16,10 @@ public class ProductController {
         dao = new ProductDao();
     }
 
-    public void getCategoryRequest (final ResultListener<CategoryContainer> viewListener){
-        dao.categorytRequest(new ResultListener<CategoryContainer>() {
+    public void getCategoryRequest (final ResultListener<List<Category>> viewListener){
+        dao.categorytRequest(new ResultListener<List<Category>>() {
             @Override
-            public void onFinish(CategoryContainer results) {
+            public void onFinish(List<Category> results) {
                 viewListener.onFinish(results);
             }
         });

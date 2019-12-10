@@ -1,24 +1,27 @@
 package com.example.mercadoesclavoasuarez.model.pojo;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
+
+import retrofit2.Call;
 
 public class CategoryContainer {
 
-
-    private List<Category> results;
+    private Call<List<Category>> results;
 
     public CategoryContainer() {
     }
 
-    public CategoryContainer(List<Category> results) {
+    public CategoryContainer(Call<List<Category>> results) {
         this.results = results;
     }
 
-    public List<Category> getResults() {
+    public Call<List<Category>> getResults() {
         return results;
     }
 
-    public void setResults(List<Category> results) {
+    public void setResults(Call<List<Category>> results) {
         this.results = results;
     }
 }

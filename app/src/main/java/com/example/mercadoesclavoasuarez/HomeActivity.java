@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,14 +63,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
         ProductController productController = new ProductController();
-        productController.getCategoryRequest(new ResultListener<CategoryContainer>() {
+        productController.getCategoryRequest(new ResultListener<List<Category>>() {
+            @Override
+            public void onFinish(List<Category> results) {
+                results.ge
+            }
+        });
+        /*productController.getCategoryRequest(new ResultListener<List<Category>>(){
             @Override
             public void onFinish(CategoryContainer results) {
                 List<Category> categoriesList = results.getResults();
                 categories = categoriesList;
                 categoryAdapter.refreshList(categories);
             }
-        });
+        });*/
 
         categoryAdapter = new CategoryAdapter(categories);
         this.recyclerView.setAdapter(categoryAdapter);

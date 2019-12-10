@@ -1,5 +1,6 @@
 package com.example.mercadoesclavoasuarez.model.dao;
 
+import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
 import com.example.mercadoesclavoasuarez.util.ProductService;
@@ -31,22 +32,22 @@ public class ProductDao {
         productService = retrofit.create(ProductService.class);
     }
 
-    public void categorytRequest(final ResultListener<CategoryContainer> controllerListener){
-        Call<CategoryContainer> categoryContainerCall = productService.categoryApiRequest();
+    public void categorytRequest(final ResultListener<List<Category>> controllerListener){
+        Call<List<Category>> categoryListCall = productService.categoryApiRequest();
         productService.categoryApiRequest();
-        categoryContainerCall.enqueue(new Callback<CategoryContainer>() {
+        categoryListCall.enqueue(new Callback<List<Category>>() {
             @Override
-            public void onResponse(Call<CategoryContainer> call, Response<CategoryContainer> response) {
-                CategoryContainer body = response.body();
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                List<Category> body = response.body();
                 controllerListener.onFinish(body);
             }
 
             @Override
-            public void onFailure(Call<CategoryContainer> call, Throwable t) {
-
+            public void onFailure(Call<List<Category>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
+
 
 
     }

@@ -28,10 +28,10 @@ public class SignUpActivity extends AppCompatActivity {
     EditText userNameLogin;
     @BindView(R.id.password)
     EditText passwordLogin;
-    @BindView(R.id.google_signup)
+    /*@BindView(R.id.google_signup)
     ImageButton googleLogin;
     @BindView(R.id.facebook_signup)
-    ImageButton facebookLogin;
+    ImageButton facebookLogin;*/
     @BindView(R.id.signup_button)
     Button signUpButton;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -81,8 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 startActivity(intent);
 
                             } else {
-
-                                Toast.makeText(SignUpActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
 
                             }
                         }

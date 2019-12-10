@@ -30,10 +30,10 @@ public class SignInActivity extends AppCompatActivity {
     EditText passwordLogin;
     @BindView(R.id.signin_button)
     Button signInButton;
-    @BindView(R.id.google_login)
+    /*@BindView(R.id.google_login)
     ImageButton googleLogin;
     @BindView(R.id.facebook_login)
-    ImageButton facebookLogin;
+    ImageButton facebookLogin;*/
     @BindView(R.id.signup_text_view)
     TextView signUpTextView;
     private FirebaseAuth.AuthStateListener mAuthStateListener;

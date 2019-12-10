@@ -20,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/colorStringDarkBackground"
             android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme"
-            app:popupTheme="@style/AppTheme"/>
+            app:popupTheme="@style/AppTheme"
+            app:titleTextColor="@color/colorStringDarkBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,30 +32,27 @@
             android:orientation="vertical"
             android:paddingTop="5dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productListRecyclerView"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="What are you searching for?"
+                android:textColor="@color/colorStringDarkBackground"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-
-
-
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/NavigationViewMenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/drawer_header_navigationview"
-        app:menu="@menu/menu_navigationview"></com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

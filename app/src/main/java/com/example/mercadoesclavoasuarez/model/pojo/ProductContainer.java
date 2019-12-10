@@ -1,7 +1,5 @@
 package com.example.mercadoesclavoasuarez.model.pojo;
 
-import com.example.mercadoesclavoasuarez.Product;
-
 import java.util.List;
 
 public class ProductContainer {

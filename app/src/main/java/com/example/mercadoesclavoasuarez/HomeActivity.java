@@ -14,8 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.mercadoesclavoasuarez.controller.ProductController;
+import com.example.mercadoesclavoasuarez.model.dao.ProductDao;
+import com.example.mercadoesclavoasuarez.model.pojo.Category;
+import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
+import com.example.mercadoesclavoasuarez.model.pojo.Product;
+import com.example.mercadoesclavoasuarez.util.ResultListener;
+import com.example.mercadoesclavoasuarez.view.CategoryAdapter;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,23 +33,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.DrawerMainActivity)
     DrawerLayout drawerLayoutMainActivity;
-    @BindView(R.id.NavigationViewMenu)
-    NavigationView navigationViewMenu;
     @BindView(R.id.toolbarMainActivity)
     Toolbar toolbar;
-    @BindView(R.id.productListRecyclerView)
+    @BindView(R.id.categoryListRecyclerView)
     RecyclerView recyclerView;
+    private List<Category> categories = new ArrayList<>();
+    private Adapter adapter;
+    private CategoryAdapter categoryAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
 
         setSupportActionBar(toolbar);
-        navigationViewMenu.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayoutMainActivity, toolbar, R.string.openNavigationView, R.string.closeNavigationView);
         drawerToggle.getDrawerArrowDrawable().setColor(getColor(R.color.colorAccent));
@@ -52,33 +60,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         this.recyclerView.setLayoutManager(layoutManager);
 
-        ProductDao productDao = new ProductDao();
-        List<Product> productList = productDao.getProducts();
 
-        Adapter adapter = new Adapter(productList);
-        this.recyclerView.setAdapter(adapter);
+        ProductController productController = new ProductController();
+        productController.getCategoryRequest(new ResultListener<CategoryContainer>() {
+            @Override
+            public void onFinish(CategoryContainer results) {
+                List<Category> categoriesList = results.getResults();
+                categories = categoriesList;
+                categoryAdapter.refreshList(categories);
+            }
+        });
+
+        categoryAdapter = new CategoryAdapter(categories);
+        this.recyclerView.setAdapter(categoryAdapter);
         this.recyclerView.setHasFixedSize(true);
-
-
-
-
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-         /* @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.search_action){
-            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Go to LinkedIn", Toast.LENGTH_SHORT).show();
-        }
-        return true;
-    }*/
 
         String itemName = (String) menuItem.getTitle();
 
@@ -86,7 +86,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         closeNavigationView();
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.HomeNavigationViewMenu:
                 break;
             case R.id.SearchNavigationViewMenu:
@@ -107,14 +107,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayoutMainActivity.closeDrawer(GravityCompat.START);
     }
 
-    private void openNavigationView(){
+    private void openNavigationView() {
         drawerLayoutMainActivity.openDrawer(GravityCompat.START);
     }
 
     @Override
     public void onBackPressed() {
 
-        if(drawerLayoutMainActivity.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayoutMainActivity.isDrawerOpen(GravityCompat.START)) {
             closeNavigationView();
         }
         super.onBackPressed();
@@ -133,7 +133,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Toast.makeText(this, "Button: " + title, Toast.LENGTH_SHORT).show();
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.filter_button_main_toolbar:
                 break;
             case R.id.search_button_main_toolbar:

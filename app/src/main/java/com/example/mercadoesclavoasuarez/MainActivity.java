@@ -9,16 +9,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mercadoesclavoasuarez.model.dao.ProductDao;
+import com.example.mercadoesclavoasuarez.model.pojo.Product;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
 
@@ -57,12 +56,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         this.recyclerView.setLayoutManager(layoutManager);
 
-        ProductDao productDao = new ProductDao();
+       /* ProductDao productDao = new ProductDao();
         List<Product> productList = productDao.getProducts();
 
         Adapter adapter = new Adapter(productList);
         this.recyclerView.setAdapter(adapter);
         this.recyclerView.setHasFixedSize(true);
+
+
+        */
 
 
 

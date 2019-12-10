@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(SignInActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
                             } else {
-                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                                 startActivity(intent);
                             }
                         }

@@ -9,19 +9,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.mercadoesclavoasuarez.model.pojo.Category;
+import com.example.mercadoesclavoasuarez.model.pojo.Product;
 
-import butterknife.BindView;
+import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter {
 
     private List<Product> productList;
+
 
     public Adapter() {
     }
 
     public Adapter(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public void refreshProduct(List<Product> productList){
+        this.productList = productList;
+        notifyDataSetChanged();
     }
 
 
@@ -65,9 +72,9 @@ public class Adapter extends RecyclerView.Adapter {
         }
 
         public void bind(Product unProductPojo) {
-            this.imageProduct.setImageResource(unProductPojo.getImageProduct());
+            /*this.imageProduct.setImageResource(unProductPojo.getImageProduct());
             this.productName.setText(unProductPojo.getNameProduct());
-            this.productPrice.setText(unProductPojo.getPriceProduct());
+            this.productPrice.setText(unProductPojo.getPriceProduct())*/;
         }
     }
 }

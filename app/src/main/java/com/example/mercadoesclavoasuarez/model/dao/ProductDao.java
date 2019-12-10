@@ -1,12 +1,17 @@
-package com.example.mercadoesclavoasuarez;
+package com.example.mercadoesclavoasuarez.model.dao;
 
+import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
 import com.example.mercadoesclavoasuarez.util.ProductService;
 import com.example.mercadoesclavoasuarez.util.ResultListener;
 
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -15,6 +20,7 @@ public class ProductDao {
     private Retrofit retrofit;
     public static final String BASE_URL = "https://api.mercadolibre.com/sites/MLA/";
     private ProductService productService;
+    private String searchedProductQuery;
 
     public ProductDao() {
         this.retrofit = new Retrofit.Builder()
@@ -25,7 +31,42 @@ public class ProductDao {
         productService = retrofit.create(ProductService.class);
     }
 
-    public void productRequest(ResultListener<ProductContainer> controllerListener)
+    public void categorytRequest(final ResultListener<CategoryContainer> controllerListener){
+        Call<CategoryContainer> categoryContainerCall = productService.categoryApiRequest();
+        productService.categoryApiRequest();
+        categoryContainerCall.enqueue(new Callback<CategoryContainer>() {
+            @Override
+            public void onResponse(Call<CategoryContainer> call, Response<CategoryContainer> response) {
+                CategoryContainer body = response.body();
+                controllerListener.onFinish(body);
+            }
+
+            @Override
+            public void onFailure(Call<CategoryContainer> call, Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
+
+
+    }
+
+    public void productRequest(final ResultListener<ProductContainer> controllerListener){
+        Call<ProductContainer> productContainerCall = productService.productApiRequest(searchedProductQuery);
+        productService.productApiRequest(searchedProductQuery);
+        productContainerCall.enqueue(new Callback<ProductContainer>() {
+            @Override
+            public void onResponse(Call<ProductContainer> call, Response<ProductContainer> response) {
+                ProductContainer body = response.body();
+                controllerListener.onFinish(body);
+            }
+
+            @Override
+            public void onFailure(Call<ProductContainer> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
 
     /*public List<Product> getProducts() {
         List<Product> productList = new ArrayList<>();

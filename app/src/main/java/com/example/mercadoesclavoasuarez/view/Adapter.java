@@ -1,14 +1,17 @@
-package com.example.mercadoesclavoasuarez;
+package com.example.mercadoesclavoasuarez.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.mercadoesclavoasuarez.R;
 import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.Product;
 
@@ -17,13 +20,15 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter {
 
     private List<Product> productList;
+    private BoxListener boxListener;
 
 
     public Adapter() {
     }
 
-    public Adapter(List<Product> productList) {
+    public Adapter(List<Product> productList, BoxListener boxListener) {
         this.productList = productList;
+        this.boxListener = boxListener;
     }
 
     public void refreshProduct(List<Product> productList){
@@ -59,6 +64,7 @@ public class Adapter extends RecyclerView.Adapter {
 
     private class ProductViewHolder extends RecyclerView.ViewHolder {
 
+
         ImageView imageProduct;
         TextView productName;
         TextView productPrice;
@@ -69,12 +75,28 @@ public class Adapter extends RecyclerView.Adapter {
             this.imageProduct = itemView.findViewById(R.id.productImageView);
             this.productName = itemView.findViewById(R.id.productNameTextView);
             this.productPrice = itemView.findViewById(R.id.productPriceTextView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Product product = productList.get(getAdapterPosition());
+                    boxListener.boxPicked(product);
+                }
+            });
         }
 
-        public void bind(Product unProductPojo) {
+        public void bind(Product product) {
+
+            Glide.with(imageProduct)
+                    .load(product.getThumbnail())
+                    .into(imageProduct);
+            this.productName.setText(product.getTitle());
+            this.productPrice.setText(product.getPrice());
             /*this.imageProduct.setImageResource(unProductPojo.getImageProduct());
             this.productName.setText(unProductPojo.getNameProduct());
             this.productPrice.setText(unProductPojo.getPriceProduct())*/;
         }
+    }
+    public interface BoxListener{
+        void boxPicked(Product productPicked);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mercadoesclavoasuarez.model.dao;
 
+import com.example.mercadoesclavoasuarez.controller.ProductController;
 import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
@@ -47,14 +48,11 @@ public class ProductDao {
                 t.printStackTrace();
             }
         });
-
-
-
     }
 
-    public void productRequest(final ResultListener<ProductContainer> controllerListener){
-        Call<ProductContainer> productContainerCall = productService.productApiRequest(searchedProductQuery);
-        productService.productApiRequest(searchedProductQuery);
+
+    public void productRequest(final ResultListener<ProductContainer> controllerListener, String searchedProduct){
+        Call<ProductContainer> productContainerCall = productService.productApiRequest(searchedProduct);
         productContainerCall.enqueue(new Callback<ProductContainer>() {
             @Override
             public void onResponse(Call<ProductContainer> call, Response<ProductContainer> response) {

@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
+
     <item
         android:id="@+id/search_button_main_toolbar"
         android:checkable="true"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
-        app:showAsAction="always" />
+        style="@style/SearchViewStyle"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"/>
 
     <item
         android:id="@+id/filter_button_main_toolbar"

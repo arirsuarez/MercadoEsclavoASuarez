@@ -3,6 +3,7 @@ package com.example.mercadoesclavoasuarez.controller;
 import com.example.mercadoesclavoasuarez.model.dao.ProductDao;
 import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.CategoryContainer;
+import com.example.mercadoesclavoasuarez.model.pojo.Product;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
 import com.example.mercadoesclavoasuarez.util.ResultListener;
 
@@ -25,12 +26,12 @@ public class ProductController {
         });
     }
 
-    public void getProductRequest (final ResultListener<ProductContainer> viewListener){
+    public void getProductRequest(final ResultListener<ProductContainer> viewListener, String searchRequest){
         dao.productRequest(new ResultListener<ProductContainer>() {
             @Override
             public void onFinish(ProductContainer results) {
                 viewListener.onFinish(results);
             }
-        });
+        },searchRequest);
     }
 }

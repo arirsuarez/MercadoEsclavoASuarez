@@ -16,12 +16,14 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter {
 
     private List<Category> categoryList;
+    BoxListener boxListener;
 
     public CategoryAdapter() {
     }
 
-    public CategoryAdapter(List<Category> categoryList) {
+    public CategoryAdapter(List<Category> categoryList, BoxListener boxListener) {
         this.categoryList = categoryList;
+        this.boxListener = boxListener;
     }
 
     public void refreshList(List<Category> categoryList){
@@ -60,10 +62,22 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             this.categoryName = itemView.findViewById(R.id.categoryNameTextView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Category category = categoryList.get(getAdapterPosition());
+                    boxListener.boxPicked(category);
+                }
+            });
         }
 
         public void bind(Category category){
             this.categoryName.setText(category.getName());
         }
+    }
+
+    public interface BoxListener{
+        void boxPicked(Category category);
     }
 }

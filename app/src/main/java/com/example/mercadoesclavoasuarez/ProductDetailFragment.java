@@ -9,6 +9,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import butterknife.BindView;
 
 
 /**
@@ -16,9 +20,16 @@ import android.view.ViewGroup;
  */
 public class ProductDetailFragment extends Fragment {
 
+    @BindView(R.id.productImageDetailFragment)
+    ImageView productImage;
+    @BindView(R.id.productNameTextView)
+    TextView productTitle;
+    @BindView(R.id.productPriceTextView)
+    TextView producPrice;
+
+
     ViewPager productViewPager = getView().findViewById(R.id.productFragmentViewPager);
     //TODO GetSupport Fragment Manger. 
-
 
 
     public ProductDetailFragment() {

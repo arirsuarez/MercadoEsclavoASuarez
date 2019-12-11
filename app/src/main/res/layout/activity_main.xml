@@ -24,7 +24,9 @@
             app:titleTextColor="@color/colorStringDarkBackground"
             android:elevation="4dp"
             android:theme="@style/AppTheme"
-            app:popupTheme="@style/AppTheme"/>
+            app:popupTheme="@style/AppTheme" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

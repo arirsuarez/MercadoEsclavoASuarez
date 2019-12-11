@@ -9,22 +9,30 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 
-import com.example.mercadoesclavoasuarez.model.dao.ProductDao;
+import com.example.mercadoesclavoasuarez.controller.ProductController;
+import com.example.mercadoesclavoasuarez.model.pojo.Category;
 import com.example.mercadoesclavoasuarez.model.pojo.Product;
+import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
+import com.example.mercadoesclavoasuarez.util.ResultListener;
+import com.example.mercadoesclavoasuarez.view.Adapter;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Adapter.BoxListener {
+
+    public static final String CATEGORY_KEY = "Category";
 
 
     @BindView(R.id.DrawerMainActivity)
@@ -35,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     @BindView(R.id.productListRecyclerView)
     RecyclerView recyclerView;
+    private List<Product> productList = new ArrayList<>();
+    private Adapter adapter;
 
 
     @Override
@@ -56,18 +66,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         this.recyclerView.setLayoutManager(layoutManager);
 
-       /* ProductDao productDao = new ProductDao();
-        List<Product> productList = productDao.getProducts();
 
-        Adapter adapter = new Adapter(productList);
-        this.recyclerView.setAdapter(adapter);
-        this.recyclerView.setHasFixedSize(true);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        Category category = (Category) bundle.getSerializable(CATEGORY_KEY);
+        String categorySearched = category.getName();
 
+        ProductController productController = new ProductController();
+        productController.getProductRequest(new ResultListener<ProductContainer>() {
+            @Override
+            public void onFinish(ProductContainer results) {
+                productList = results.getResults();
+                adapter.refreshProduct(productList);
+            }
+        }, categorySearched);
 
-        */
+        /*productController.getProductRequest(new ResultListener<ProductContainer>() {
+            @Override
+            public void onFinish(ProductContainer results) {
+                productList = results.getResults();
+                adapter.refreshProduct(productList);
+            }
+        });*/
 
-
-
+        adapter = new Adapter(productList, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
 
     }
 
@@ -151,4 +175,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+    @Override
+    public void boxPicked(Product product) {
+        Toast.makeText(this, product.getTitle(), Toast.LENGTH_SHORT).show();
+
     }
+}

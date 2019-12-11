@@ -17,7 +17,4 @@ public interface ProductService {
 
     @GET("categories")
     Call<List<Category>> categoryApiRequest();
-
-
-
 }

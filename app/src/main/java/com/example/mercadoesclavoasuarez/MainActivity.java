@@ -71,8 +71,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Category category = (Category) bundle.getSerializable(CATEGORY_KEY);
-        String categorySearched = category.getName();
         productList = new ArrayList<>();
+        String requestedSearch = category.getName();
+
 
         ProductController productController = new ProductController();
 
@@ -82,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onFinish(ProductContainer results) {
                 productList = results.getResults();
                 adapter.refreshProduct(productList);
-
             }
-        }, categorySearched);
+        }, requestedSearch);
+
 
        adapter = new Adapter(productList, this);
         recyclerView.setAdapter(adapter);

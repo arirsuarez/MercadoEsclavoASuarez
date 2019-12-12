@@ -26,12 +26,12 @@ public class ProductController {
         });
     }
 
-    public void getProductRequest(final ResultListener<ProductContainer> viewListener, String searchRequest){
+    public void getProductRequest(final ResultListener<ProductContainer> viewListener, String requestedSearch){
         dao.productRequest(new ResultListener<ProductContainer>() {
             @Override
             public void onFinish(ProductContainer results) {
                 viewListener.onFinish(results);
             }
-        },searchRequest);
+        },requestedSearch);
     }
 }

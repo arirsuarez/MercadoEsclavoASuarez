@@ -51,7 +51,7 @@ public class InsideProductActivity extends AppCompatActivity {
                 .load(product.getThumbnail())
                 .into(productImage);
         productName.setText(product.getTitle());
-        productPrice.setText(product.getPrice());
+        productPrice.setText(product.getPrice().toString());
 
 
 

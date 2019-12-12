@@ -32,6 +32,13 @@ public class ProductDetailsViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        switch (position){
+            case 0:
+                Questions questions = new Questions();
+                return questions;
+            case 1:
+
+        }
         return fragments.get(position);
     }
 

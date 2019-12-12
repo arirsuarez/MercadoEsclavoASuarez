@@ -1,5 +1,7 @@
 package com.example.mercadoesclavoasuarez.view;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mercadoesclavoasuarez.HomeActivity;
+import com.example.mercadoesclavoasuarez.MainActivity;
 import com.example.mercadoesclavoasuarez.R;
 import com.example.mercadoesclavoasuarez.model.pojo.Category;
 
@@ -59,7 +63,7 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
         TextView categoryName;
 
-        public CategoryViewHolder(@NonNull View itemView) {
+        public CategoryViewHolder(@NonNull final View itemView) {
             super(itemView);
             this.categoryName = itemView.findViewById(R.id.categoryNameTextView);
 

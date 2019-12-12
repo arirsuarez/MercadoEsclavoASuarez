@@ -22,6 +22,7 @@ import com.example.mercadoesclavoasuarez.model.pojo.Product;
 import com.example.mercadoesclavoasuarez.model.pojo.ProductContainer;
 import com.example.mercadoesclavoasuarez.util.ResultListener;
 import com.example.mercadoesclavoasuarez.view.Adapter;
+import com.example.mercadoesclavoasuarez.view.InsideProductActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     @BindView(R.id.productListRecyclerView)
     RecyclerView recyclerView;
-    private List<Product> productList = new ArrayList<>();
+    private List<Product> productList;
     private Adapter adapter;
 
 
@@ -71,25 +72,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = intent.getExtras();
         Category category = (Category) bundle.getSerializable(CATEGORY_KEY);
         String categorySearched = category.getName();
+        productList = new ArrayList<>();
 
         ProductController productController = new ProductController();
+
+
         productController.getProductRequest(new ResultListener<ProductContainer>() {
             @Override
             public void onFinish(ProductContainer results) {
                 productList = results.getResults();
                 adapter.refreshProduct(productList);
+
             }
         }, categorySearched);
 
-        /*productController.getProductRequest(new ResultListener<ProductContainer>() {
-            @Override
-            public void onFinish(ProductContainer results) {
-                productList = results.getResults();
-                adapter.refreshProduct(productList);
-            }
-        });*/
-
-        adapter = new Adapter(productList, this);
+       adapter = new Adapter(productList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
 
@@ -117,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         closeNavigationView();
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.HomeNavigationViewMenu:
                 break;
             case R.id.SearchNavigationViewMenu:
@@ -138,14 +135,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayoutMainActivity.closeDrawer(GravityCompat.START);
     }
 
-    private void openNavigationView(){
+    private void openNavigationView() {
         drawerLayoutMainActivity.openDrawer(GravityCompat.START);
     }
 
     @Override
     public void onBackPressed() {
 
-        if(drawerLayoutMainActivity.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayoutMainActivity.isDrawerOpen(GravityCompat.START)) {
             closeNavigationView();
         }
         super.onBackPressed();
@@ -164,20 +161,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toast.makeText(this, "Button: " + title, Toast.LENGTH_SHORT).show();
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.filter_button_main_toolbar:
                 break;
             case R.id.search_button_main_toolbar:
                 break;
         }
 
-            return true;
-        }
+        return true;
+    }
 
 
     @Override
     public void boxPicked(Product product) {
         Toast.makeText(this, product.getTitle(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, InsideProductActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(InsideProductActivity.KEY_PRODUCT, product);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
 
     }
 }

@@ -28,6 +28,7 @@ public class ProductDetailFragment extends Fragment {
     TextView producPrice;
 
 
+
     ViewPager productViewPager = getView().findViewById(R.id.productFragmentViewPager);
     //TODO GetSupport Fragment Manger. 
 
@@ -43,5 +44,7 @@ public class ProductDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_detail, container, false);
     }
+
+
 
 }

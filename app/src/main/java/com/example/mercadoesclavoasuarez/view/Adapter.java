@@ -91,9 +91,6 @@ public class Adapter extends RecyclerView.Adapter {
                     .into(imageProduct);
             this.productName.setText(product.getTitle());
             this.productPrice.setText(product.getPrice());
-            /*this.imageProduct.setImageResource(unProductPojo.getImageProduct());
-            this.productName.setText(unProductPojo.getNameProduct());
-            this.productPrice.setText(unProductPojo.getPriceProduct())*/;
         }
     }
     public interface BoxListener{

@@ -48,8 +48,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.categoryListRecyclerView)
     RecyclerView recyclerView;
     private List<Category> categories = new ArrayList<>();
-    ProductService productService;
-
     private CategoryAdapter categoryAdapter;
 
 
@@ -199,16 +197,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void boxPicked(Category category) {
 
-        String name = category.getName();
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(MainActivity.CATEGORY_KEY, category);
         intent.putExtras(bundle);
 
         startActivity(intent);
-
-
-
     }
-
 }

@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface ProductService {
 
-    @GET("search")
+    @GET("search?")
     Call<ProductContainer> productApiRequest(@Query("q") String requestedSearch);
 
     @GET("categories")

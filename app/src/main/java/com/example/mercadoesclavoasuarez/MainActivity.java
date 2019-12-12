@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Category category = (Category) bundle.getSerializable(CATEGORY_KEY);
-        String categorySearched = category.getName();
+        String requestedSearch = category.getName();
 
         ProductController productController = new ProductController();
         productController.getProductRequest(new ResultListener<ProductContainer>() {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 productList = results.getResults();
                 adapter.refreshProduct(productList);
             }
-        }, categorySearched);
+        }, requestedSearch);
 
         /*productController.getProductRequest(new ResultListener<ProductContainer>() {
             @Override

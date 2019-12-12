@@ -73,8 +73,8 @@ public class Adapter extends RecyclerView.Adapter {
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             this.imageProduct = itemView.findViewById(R.id.productImageView);
-            this.productName = itemView.findViewById(R.id.productNameTextView);
-            this.productPrice = itemView.findViewById(R.id.productPriceTextView);
+            this.productName = itemView.findViewById(R.id.productTitleTextView);
+            this.productPrice = itemView.findViewById(R.id.productPriceCellTextView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -90,7 +90,7 @@ public class Adapter extends RecyclerView.Adapter {
                     .load(product.getThumbnail())
                     .into(imageProduct);
             this.productName.setText(product.getTitle());
-            this.productPrice.setText(product.getPrice());
+            this.productPrice.setText(product.getPrice().toString());
             /*this.imageProduct.setImageResource(unProductPojo.getImageProduct());
             this.productName.setText(unProductPojo.getNameProduct());
             this.productPrice.setText(unProductPojo.getPriceProduct())*/;

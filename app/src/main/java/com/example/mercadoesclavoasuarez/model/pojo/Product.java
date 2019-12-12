@@ -6,14 +6,14 @@ public class Product {
 
         private String id;
         private String title;
-        private Integer price;
+        private Double price;
         private String condition;
         private String thumbnail;
 
     public Product() {
     }
 
-    public Product(String id, String title, Integer price, String condition, String thumbnail) {
+    public Product(String id, String title, Double price, String condition, String thumbnail) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -37,11 +37,11 @@ public class Product {
         this.title = title;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

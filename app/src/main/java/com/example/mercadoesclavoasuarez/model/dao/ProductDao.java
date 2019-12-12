@@ -51,8 +51,8 @@ public class ProductDao {
     }
 
 
-    public void productRequest(final ResultListener<ProductContainer> controllerListener, String searchedProduct){
-        Call<ProductContainer> productContainerCall = productService.productApiRequest(searchedProduct);
+    public void productRequest(final ResultListener<ProductContainer> controllerListener, String requestedSearch){
+        Call<ProductContainer> productContainerCall = productService.productApiRequest(requestedSearch);
         productContainerCall.enqueue(new Callback<ProductContainer>() {
             @Override
             public void onResponse(Call<ProductContainer> call, Response<ProductContainer> response) {

@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:accessibilityPaneTitle="SELLER INFO"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".view.SellerInfo">
-
+    android:accessibilityPaneTitle="ADDRESS"
+    tools:context=".view.ProductAdressFragment">
 
     <TextView
-        android:id="@+id/sellerInfoFragment"
+        android:id="@+id/addressFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="2dp"

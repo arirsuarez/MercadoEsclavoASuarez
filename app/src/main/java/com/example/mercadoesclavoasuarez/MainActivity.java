@@ -5,14 +5,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayoutMainActivity;
     @BindView(R.id.NavigationViewMenu)
     NavigationView navigationViewMenu;
-    @BindView(R.id.toolbarMainActivity)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.productListRecyclerView)
     RecyclerView recyclerView;
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerToggle.syncState();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        this.recyclerView.setLayoutManager(layoutManager);
+
 
 
         Intent intent = getIntent();
@@ -74,6 +79,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         productList = new ArrayList<>();
         String requestedSearch = category.getName();
 
+
+
+
+
+        adapter = new Adapter(productList, this);
+        this.recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
 
         ProductController productController = new ProductController();
 
@@ -87,27 +100,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }, requestedSearch);
 
 
-       adapter = new Adapter(productList, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-         /* @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.search_action){
-            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Go to LinkedIn", Toast.LENGTH_SHORT).show();
-        }
-        return true;
-    }*/
 
         String itemName = (String) menuItem.getTitle();
 
@@ -149,11 +146,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onBackPressed();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_main_activity, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.toolbar_main_activity, menu);
+//        MenuItem searchItem = menu.findItem(R.id.search_button_main_toolbar);
+//        final SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//
+//        searchView.setSearchableInfo((searchManager.getSearchableInfo(getComponentName())));
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                String newFilter = !TextUtils.isEmpty(newText) ? newText : null;
+//                if(mSearchTerm == null & newFilter == null){
+//                    return true;
+//                }
+//
+//                if(mSearchTerm != null & mSearchTerm.equals(newFilter)){
+//                    return true;
+//                }
+//
+//                mSearchTerm = newFilter;
+//                mSearchQueryChanged = true;
+//                searchText(newText);
+//                return true;
+//            }
+//        });
+//        return true;
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -175,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void boxPicked(Product product) {
-        Toast.makeText(this, product.getTitle(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, product.getTitle(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, InsideProductActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(InsideProductActivity.KEY_PRODUCT, product);

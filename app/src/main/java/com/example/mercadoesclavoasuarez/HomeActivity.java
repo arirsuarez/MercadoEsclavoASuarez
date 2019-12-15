@@ -13,6 +13,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -27,10 +28,18 @@ import com.example.mercadoesclavoasuarez.util.ProductService;
 import com.example.mercadoesclavoasuarez.util.ResultListener;
 import com.example.mercadoesclavoasuarez.view.Adapter;
 import com.example.mercadoesclavoasuarez.view.CategoryAdapter;
+import com.example.mercadoesclavoasuarez.view.FavouriteProducts;
+import com.example.mercadoesclavoasuarez.view.InsideProductActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,16 +48,18 @@ import retrofit2.Call;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CategoryAdapter.BoxListener {
 
 
-    @BindView(R.id.DrawerMainActivity)
+    @BindView(R.id.DrawerActivityHome)
     DrawerLayout drawerLayoutMainActivity;
-    @BindView(R.id.NavigationViewMenu)
+    @BindView(R.id.NavigationViewMenuHome)
     NavigationView navigationView;
-    @BindView(R.id.toolbarMainActivity)
+    @BindView(R.id.toolbarHomeActivity)
     Toolbar toolbar;
     @BindView(R.id.categoryListRecyclerView)
     RecyclerView recyclerView;
-    private List<Category> categories = new ArrayList<>();
+    private List<Category> categories;
     private CategoryAdapter categoryAdapter;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<Product> productList;
 
 
     @Override
@@ -73,6 +84,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.NotificationNavigationViewMenu:
                         break;
                     case R.id.FavoritesNavigationViewMenu:
+                        Intent intent = new Intent(HomeActivity.this, FavouriteProducts.class);
+                        startActivity(intent);
                         break;
                     case R.id.UserAccountNavigationViewMenu:
                         break;
@@ -97,6 +110,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         this.recyclerView.setLayoutManager(layoutManager);
 
+        this.categories = new ArrayList<>();
 
         ProductController productController = new ProductController();
         productController.getCategoryRequest(new ResultListener<List<Category>>() {
@@ -142,56 +156,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayoutMainActivity.closeDrawer(GravityCompat.START);
 
-   /* private void openNavigationView() {
-        drawerLayoutMainActivity.openDrawer(GravityCompat.START);
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (drawerLayoutMainActivity.isDrawerOpen(GravityCompat.START)) {
-            closeNavigationView();
-        }
-        super.onBackPressed();
-    }*/
-
-        /*@Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            getMenuInflater().inflate(R.menu.toolbar_main_activity, menu);
-            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            SearchView searchView = (SearchView) menu.findItem(R.id.search_button_main_toolbar);
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    return false;
-                }
-            });
-            return true;
-        }*/
-
-        /*@Override
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
-
-            String title = item.getTitle().toString();
-
-            Toast.makeText(this, "Button: " + title, Toast.LENGTH_SHORT).show();
-
-            switch (item.getItemId()) {
-                case R.id.filter_button_main_toolbar:
-                    break;
-                case R.id.search_button_main_toolbar:
-                    break;
-            }
-
-            return true;
-        }*/
     }
 
     @Override

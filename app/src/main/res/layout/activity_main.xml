@@ -16,39 +16,35 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarMainActivity"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/colorStringDarkBackground"
             android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme"
-            app:popupTheme="@style/AppTheme" />
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
+            app:popupTheme="@style/AppTheme"
+            app:titleTextColor="@color/colorStringDarkBackground" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productListRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
-
-        </LinearLayout>
-
-
 
     </LinearLayout>
 
 
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/tabLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:tabGravity="center"-->
+<!--        app:tabMode="fixed"-->
+<!--        app:tabSelectedTextColor="@color/colorAccent"-->
+<!--        app:tabTextColor="@color/colorSecondaryLight"-->
+<!--        app:tabIndicatorColor="@color/colorAccent"/>-->
 
 
     <com.google.android.material.navigation.NavigationView

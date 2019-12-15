@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.InsideProductActivity"></activity>
+        <activity android:name=".view.FavouriteProducts"></activity>
+        <activity android:name=".view.InsideProductActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity">

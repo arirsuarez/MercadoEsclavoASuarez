@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".view.InsideProductActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/productDetailFragmentToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_gravity="start"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/AppTheme"></androidx.appcompat.widget.Toolbar>
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/productDetailFragmentToolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/colorPrimaryDark"-->
+<!--        android:elevation="4dp"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        android:theme="@style/AppTheme"-->
+<!--        app:popupTheme="@style/AppTheme" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,15 +25,15 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="60dp"
-            android:orientation="vertical">
+            android:layout_height="150dp"
+            android:padding="6dp">
 
 
             <ImageView
                 android:id="@+id/productImageDetailFragment"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="250dp"
+                android:layout_gravity="center"
                 android:background="@color/colorSecondaryLight"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
@@ -56,7 +56,7 @@
                     android:layout_marginBottom="6dp"
                     android:gravity="center"
                     android:textColor="@color/colorStringDarkBackground"
-                    android:textSize="26sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="Nombre del producto" />
 
@@ -68,21 +68,26 @@
                     android:layout_marginBottom="6dp"
                     android:gravity="center"
                     android:textColor="@color/colorStringDarkBackground"
-                    android:textSize="26sp"
+                    android:textSize="18sp"
                     tools:text="$ Precio" />
 
             </LinearLayout>
-
         </FrameLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/productDetailTablayout"
-            android:background="@color/colorPrimaryDark"/>
+            android:id="@+id/tabLayoutProductDetails"
+            app:tabBackground="@color/colorPrimaryLight"
+            app:tabTextColor="@color/colorSecondaryLight"
+            app:tabGravity="center"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/colorAccent"
+            android:layout_margin="3dp"/>
+
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/productFragmentViewPager"
+            android:id="@+id/productViewPagerInActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark">
@@ -90,5 +95,17 @@
         </androidx.viewpager.widget.ViewPager>
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FavButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_favorite_border_black_24dp"
+        android:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

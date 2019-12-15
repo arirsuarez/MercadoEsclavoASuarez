@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:accessibilityPaneTitle="SELLER INFO"
     android:background="@color/colorPrimaryDark"
+    android:accessibilityPaneTitle="WEB LINK"
     android:orientation="vertical"
-    tools:context=".view.SellerInfo">
+    tools:context=".view.ProductLinkFragment">
 
 
     <TextView
-        android:id="@+id/sellerInfoFragment"
+        android:id="@+id/webLinkFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="2dp"

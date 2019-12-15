@@ -1,4 +1,4 @@
-package com.example.mercadoesclavoasuarez;
+package com.example.mercadoesclavoasuarez.view;
 
 
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import com.example.mercadoesclavoasuarez.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RatingsInfo extends Fragment {
+public class SellerInfo extends Fragment {
 
 
-    public RatingsInfo() {
+    public SellerInfo() {
         // Required empty public constructor
     }
 
@@ -27,7 +27,7 @@ public class RatingsInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ratings_info, container, false);
+        return inflater.inflate(R.layout.fragment_seller_info, container, false);
     }
 
 }

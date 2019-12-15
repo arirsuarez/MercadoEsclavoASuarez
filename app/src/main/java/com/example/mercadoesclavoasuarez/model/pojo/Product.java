@@ -2,6 +2,8 @@ package com.example.mercadoesclavoasuarez.model.pojo;
 
 import android.content.Intent;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
@@ -11,6 +13,10 @@ public class Product implements Serializable {
         private Double price;
         private String condition;
         private String thumbnail;
+        private String stop_time;
+        private Location location;
+        private Address address;
+        private String permalink;
 
     public Product() {
     }

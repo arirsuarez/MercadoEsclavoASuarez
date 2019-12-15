@@ -90,7 +90,7 @@ public class Adapter extends RecyclerView.Adapter {
                     .load(product.getThumbnail())
                     .into(imageProduct);
             this.productName.setText(product.getTitle());
-            this.productPrice.setText(product.getPrice().toString());
+            this.productPrice.setText("$" + product.getPrice().toString());
             /*this.imageProduct.setImageResource(unProductPojo.getImageProduct());
             this.productName.setText(unProductPojo.getNameProduct());
             this.productPrice.setText(unProductPojo.getPriceProduct())*/;
